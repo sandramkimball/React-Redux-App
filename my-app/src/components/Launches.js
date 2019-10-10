@@ -3,10 +3,11 @@ import {connect} from 'react-redux';
 import LaunchData from './LaunchData';
 import {fetchData} from '../actions';
 
-const Launches = props => {
+const Launches = (props) => {
         
     useEffect(()=>{
         props.fetchData();
+        console.log('Tamale Rocket', props)
     }, []);
 
     if(props.isFetching){
@@ -15,9 +16,10 @@ const Launches = props => {
 
     return (
         <div>
+            <h2>Here is Data. Behold.</h2>
             {props.error && <p>{props.error}</p>}
-            {props.Launches.map(data=>(
-                <LaunchData key={data.id} data={data}/>
+            {props.capsules.map(item=>(
+                <LaunchData key={item.id} item={item}/>
             ))}
         </div>
     )
@@ -25,7 +27,7 @@ const Launches = props => {
 
 const mapStateToProps = state => {
     return {
-        launches: state.launches,
+        capsules: state.capsules,
         isFetching: state.isFetching,
         error: state.error
 
@@ -33,5 +35,6 @@ const mapStateToProps = state => {
 }
 
 export default connect(
-    mapStateToProps{fetchData}
+    mapStateToProps,
+    {fetchData}
 )(Launches);

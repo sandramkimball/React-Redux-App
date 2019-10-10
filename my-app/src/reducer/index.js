@@ -1,9 +1,16 @@
 import {START_FETCHING, FETCH_SUCCESS, FETCH_FAILURE} from '../actions';
 
 const initialState = {
-    launches: [],
+    capsules: [
+        {
+            id: '',
+            name: '',
+            city: '',
+            state: ''
+        }
+    ],
     isFetching: false,
-    err: ''
+    error: ''
 };
 
 const reducer = (state = initialState, action) => {
@@ -21,7 +28,13 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 isFetching: false,
                 error: '',
-                launches: action.payload
+                capsules: {
+                    ...state,
+                    id: action.payload,
+                    name: action.payload,
+                    city: action.payload,
+                    state: action.payload
+                }
             }
 
         case FETCH_FAILURE:

@@ -1,8 +1,12 @@
 import React from 'react';
 
 const LaunchData = props => {
+    
     return (
-        <h1>SPAAAAAAACE!</h1>
+        <div>
+            <h1>SPAAAAAAACE!</h1>
+            <h2>{props.name}</h2>
+        </div>
     )
 };
 
